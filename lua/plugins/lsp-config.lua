@@ -63,6 +63,34 @@ return {
         end,
       })
 
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        callback = function()
+          local params = vim.lsp.util.make_range_params()
+          params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+
+          local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/codeAction" })
+          if #clients == 0 then
+            vim.notify("error no LSP clients", "error")
+            return
+          end
+
+          local results = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+          if not results then
+            vim.notify("error no LSP textDocument/codeAction", "error")
+            return
+          end
+          for _, result in pairs(results) do
+            for _, action in pairs(result.result or {}) do
+              if action.kind == "source.organizeImports" then
+                vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+                vim.wait(100)
+                break
+              end
+            end
+          end
+        end,
+      })
+
       local capabilities = cmp_nvim_lsp.default_capabilities()
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
@@ -73,21 +101,24 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         settings = {
-            Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
+          Lua = {
+            -- make the language server recognize "vim" global
+            diagnostics = {
+              globals = { "vim" },
+            },
+            completion = {
+              callSnippet = "Replace",
             },
           },
-        })
+        },
+      })
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
       })
       lspconfig.clojure_lsp.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.gopls.setup({
         capabilities = capabilities,
       })
       lspconfig.tsserver.setup({
