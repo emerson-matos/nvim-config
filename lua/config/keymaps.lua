@@ -78,7 +78,7 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -134,7 +134,7 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- map("n", "<leader>gB", LazyVim.lazygit.browse, { desc = "Git Browse" })
 
 -- map("n", "<leader>gf", function()
---   local git_path = vim.api.nvim_buf_get_name(0)
+--   local git_path = vim.api.nvim_buf_get_name(0)key
 --   LazyVim.lazygit({args = { "-f", vim.trim(git_path) }})
 -- end, { desc = "Lazygit Current File History" })
 
@@ -178,6 +178,7 @@ map("n", "<leader>wv", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wq", "<C-W>c", { desc = "Delete Window", remap = true })
 -- LazyVim.toggle.map("<leader>wm", LazyVim.toggle.maximize)
 
+map("n", "<leader>op", "<cmd>NvimTreeToggle<cr>", { desc = "Tree Focus"})
 -- tabs
 -- map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
 -- map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })

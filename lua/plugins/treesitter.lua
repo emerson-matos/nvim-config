@@ -3,7 +3,7 @@ return {
   build = ":TSUpdate",
   event = { "BufReadPre", "BufNewFile" },
   cmd = { "TSUpadateSync", "TSUpdate", "TSInstall" },
-  dependencies = { "windwp/nvim-ts-autotag" },
+  dependencies = { "windwp/nvim-ts-autotag", "nvim-treesitter/nvim-treesitter-context" },
   auto_install = true,
   ---@type TSConfig
   ---@diagnostic disable-next-line: missing-fields

@@ -4,6 +4,7 @@ return {
     cmd = "Telescope",
     tag = "0.1.8",
     dependencies = {
+      "nvim-telescope/telescope-ui-select.nvim",
       "folke/todo-comments.nvim",
       "nvim-lua/plenary.nvim",
       "rcarriga/nvim-notify",
@@ -97,6 +98,11 @@ return {
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
       { "<leader>sR", "<cmd>Telescope resume<cr>",      desc = "Resume" },
       { "<leader>sq", "<cmd>Telescope quickfix<cr>",    desc = "Quickfix List" },
+      {
+        "<leader>ft",
+        function() require("telescope.builtin").colorscheme { enable_preview = true, ignore_builtins = true } end,
+        desc = "Find themes",
+      },
       -- { "<leader>sw", LazyVim.pick("grep_string", { word_match = "-w" }), desc = "Word (Root Dir)" },
       -- { "<leader>sW", LazyVim.pick("grep_string", { root = false, word_match = "-w" }), desc = "Word (cwd)" },
       -- { "<leader>sw", LazyVim.pick("grep_string"), mode = "v", desc = "Selection (Root Dir)" },
@@ -124,6 +130,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
+      local telescope_themes = require("telescope.themes")
       telescope.setup({
         defaults = {
           mappings = {
@@ -135,23 +142,16 @@ return {
           },
           path_display = { "smart" },
         },
+        extensions = {
+          ["ui-select"] = {
+            telescope_themes.get_dropdown({}),
+          },
+        },
       })
 
       telescope.load_extension("fzf")
       telescope.load_extension("notify")
-    end,
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    config = function()
-      require("telescope").setup({
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
-        },
-      })
-      require("telescope").load_extension("ui-select")
+      telescope.load_extension("ui-select")
     end,
   },
 }
