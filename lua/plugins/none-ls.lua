@@ -11,6 +11,5 @@ return {
         -- null_ls.builtins.diagnostics.clippy,
       },
     })
-    vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "format buffer" })
   end,
 }

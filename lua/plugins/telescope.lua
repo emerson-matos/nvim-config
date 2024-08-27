@@ -4,7 +4,7 @@ return {
     cmd = "Telescope",
     tag = "0.1.8",
     dependencies = {
-      "nvim-telescope/telescope-ui-select.nvim",
+      -- "nvim-telescope/telescope-ui-select.nvim",
       "folke/todo-comments.nvim",
       "nvim-lua/plenary.nvim",
       "rcarriga/nvim-notify",
@@ -64,7 +64,7 @@ return {
       -- { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
       { "<leader>ft", "<cmd>TodoTelescope<cr>",                       desc = "Find TODOs" },
       -- git
-      { "<leader>gc", "<cmd>Telescope git_commits<CR>",               desc = "Commits" },
+      { "<leader>gl", "<cmd>Telescope git_commits<CR>",               desc = "Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>",                desc = "Status" },
       -- search
       { '<leader>s"', "<cmd>Telescope registers<cr>",                 desc = "Registers" },
@@ -130,7 +130,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
-      local telescope_themes = require("telescope.themes")
+      -- local telescope_themes = require("telescope.themes")
       telescope.setup({
         defaults = {
           mappings = {
@@ -140,18 +140,18 @@ return {
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
           },
-          path_display = { "smart" },
+          -- path_display = { "smart" },
         },
-        extensions = {
-          ["ui-select"] = {
-            telescope_themes.get_dropdown({}),
-          },
-        },
+        -- extensions = {
+          -- ["ui-select"] = {
+            -- telescope_themes.get_dropdown({}),
+          -- },
+        -- },
       })
 
       telescope.load_extension("fzf")
       telescope.load_extension("notify")
-      telescope.load_extension("ui-select")
+      -- telescope.load_extension("ui-select")
     end,
   },
 }
