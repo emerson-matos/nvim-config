@@ -28,8 +28,11 @@ return {
           opts.desc = "Show LSP definitions"
           keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
+          opts.desc = "LSP Info"
+          vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)
+
           opts.desc = "format buffer"
-          vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
+          vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, opts)
 
           opts.desc = "Show LSP implementations"
           keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
