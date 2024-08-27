@@ -1,8 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  event = "VeryLazy",
+  dependencies = { "nvim-tree/nvim-web-devicons", "folke/trouble.nvim"},
   lazy = false,
-  opts = {
-    options = { theme = "dracula" },
-  },
+  config = true,
 }
