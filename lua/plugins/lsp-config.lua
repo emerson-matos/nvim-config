@@ -120,6 +120,9 @@ return {
       })
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end,
       })
       lspconfig.clojure_lsp.setup({
         capabilities = capabilities,
