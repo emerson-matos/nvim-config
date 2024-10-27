@@ -123,6 +123,7 @@ return {
         on_attach = function(client, bufnr)
           vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         end,
+        cmd = { "rustup", "run", "stable", "rust-analyzer" },
       })
       lspconfig.clojure_lsp.setup({
         capabilities = capabilities,
@@ -130,7 +131,7 @@ return {
       lspconfig.gopls.setup({
         capabilities = capabilities,
       })
-      lspconfig.tsserver.setup({
+      lspconfig.vtsls.setup({
         capabilities = capabilities,
       })
     end,
