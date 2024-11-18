@@ -1,20 +1,21 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    --     dependencies = {
+    -- dependencies = {
     --       "hrsh7th/cmp-nvim-lsp",
     --       { "antosha417/nvim-lsp-file-operations", config = true },
     --       { "folke/lazydev.nvim" },
-    --     },
+    -- },
     --     event = { "BufReadPre", "BufNewFile" },
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
-        --   rust_analyzer = {},
+        -- rust_analyzer = {},
         --   clojure_lsp = {},
         --   gopls = {},
-        --   vtsls = {},
+        tsserver = {},
+        vtsls = false,
       },
     },
     -- config = function()
