@@ -23,6 +23,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.lang.nix" },
     { "bufferline.nvim", enabled = false },
+    { "mason.nvim", enabled = false },
     { import = "plugins" },
   },
   defaults = {
