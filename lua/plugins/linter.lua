@@ -1,4 +1,4 @@
 return {
-  "mfussenegger/nvim-lint",
-  events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+  -- "mfussenegger/nvim-lint",
+  -- events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 }

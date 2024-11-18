@@ -21,7 +21,12 @@ require("lazy").setup({
     -- TODO:
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.editor.telescope" },
+    { import = "lazyvim.plugins.extras.lang.clojure" },
+    { import = "lazyvim.plugins.extras.lang.docker" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.nix" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
     { "bufferline.nvim", enabled = false },
     { "mason.nvim", enabled = false },
     { import = "plugins" },
