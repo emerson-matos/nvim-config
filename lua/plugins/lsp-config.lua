@@ -25,6 +25,7 @@ return {
         rust_analyzer = {},
         clojure_lsp = {},
         gopls = {},
+        nixd = {},
         eslint = {},
         ts_ls = {
           keys = {
