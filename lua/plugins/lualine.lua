@@ -1,7 +1,3 @@
 return {
-  -- "nvim-lualine/lualine.nvim",
-  -- event = "VeryLazy",
-  -- dependencies = { "nvim-tree/nvim-web-devicons", "folke/trouble.nvim"},
-  -- lazy = false,
-  -- config = true,
+  "nvim-lualine/lualine.nvim",
 }
