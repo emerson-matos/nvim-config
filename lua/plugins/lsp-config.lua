@@ -25,7 +25,13 @@ return {
         rust_analyzer = {},
         clojure_lsp = {},
         gopls = {},
-        nixd = {},
+        nixd = {
+          settings = {
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
+          },
+        },
         eslint = {},
         ts_ls = {
           keys = {
