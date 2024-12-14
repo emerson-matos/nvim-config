@@ -1,7 +1,13 @@
 return {
-  -- "folke/tokyonight.nvim",
-  -- lazy = false,
-  -- config = function ()
+  "folke/tokyonight.nvim",
+  opts = {
+    transparent = true,
+    styles = {
+      sidebars = "transparent",
+      floats = "transparent",
+    },
+  },
+  -- config = function()
   -- vim.cmd.colorscheme("tokyonight")
   -- end,
 }
