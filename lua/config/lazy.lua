@@ -24,6 +24,8 @@ require("lazy").setup({
       opts = { colorscheme = "dracula" },
     },
     -- extras
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
     -- { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
     -- { import = "lazyvim.plugins.extras.lang.clangd" },
@@ -33,6 +35,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.git" },
     -- { import = "lazyvim.plugins.extras.lang.go" },
     -- { import = "lazyvim.plugins.extras.lang.java" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.lang.markdown" },
     -- { import = "lazyvim.plugins.extras.lang.nix" },
@@ -41,8 +44,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
 
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 
     { "bufferline.nvim", enabled = false },
