@@ -14,22 +14,8 @@
 -- warning: something
 
 return {
-  -- "folke/todo-comments.nvim",
-  -- event = "BufReadPost",
-  -- dependencies = { "nvim-lua/plenary.nvim" },
-  -- config = function()
-  --   local todo_comments = require("todo-comments")
-  --   vim.keymap.set("n", "<Leader>fT", "<Cmd>TodoTelescope<CR>", { desc = "Find TODOs" })
-  --   -- TODO: add better comments
-  --   -- todo: set something
-  --   vim.keymap.set("n", "]T", function()
-  --     todo_comments.jump_next()
-  --   end, { desc = "Next TODO comment" })
-  --   vim.keymap.set("n", "[T", function()
-  --     todo_comments.jump_prev()
-  --   end, { desc = "Previous TODO comment" })
-  --
-  --   todo_comments.setup({
+  "folke/todo-comments.nvim",
+  opts= {
   --     signs = true, -- show icons in the signs column
   --     sign_priority = 8, -- sign priority
   --     keywords = {
@@ -95,6 +81,12 @@ return {
   --       },
   --       pattern = [[\b(KEYWORDS):]], -- ripgrep regex
   --     },
-  --   })
-  -- end,
+    },
+  event = "BufReadPost",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  -- keys = {
+    -- { "<Leader>fT", "<Cmd>TodoTelescope<CR>", desc = "Find TODOs"}
+    -- { "]T", function() require("todo-comments").jump_next() end, desc = "Next TODO comment" }
+    -- { "[T", function() require("todo-comments").jump_prev() end, desc = "Previous TODO comment" }
+  -- },
 }
