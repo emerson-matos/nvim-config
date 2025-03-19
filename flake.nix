@@ -7,7 +7,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        nativeBuildInputs = with pkgs; [ lua luarocks stylua lua-language-server ];
+        nativeBuildInputs = with pkgs; [ lua5_1 luarocks stylua lua-language-server ];
         # buildInputs = with pkgs; [ libpq ];
       in with pkgs; {
         devShells.default = mkShell { inherit nativeBuildInputs; };

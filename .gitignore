@@ -1,4 +1,5 @@
 tt.*
+.direnv/
 .tests
 doc/tags
 debug
