@@ -1,19 +1,5 @@
 return {
   {
-
-    "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
-    -- opts = {
-    --   window = { position = "right" },
-    --   filesystem = {
-    --     filtered_items = {
-    --       hide_dotfiles = false,
-    --       hide_by_name = { ".git", ".DS_Store" },
-    --       always_show = { ".env", ".env.local" },
-    --     },
-    --   },
-  },
-  {
     "stevearc/oil.nvim",
     event = "VeryLazy",
     ---@module 'oil'
@@ -33,10 +19,7 @@ return {
     },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    keys = { { "<leader>e", "<cmd>Oil<cr>", { desc = "Open parent directory" } } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-    -- lazy = false,
+    keys = { { "<leader>e", "<cmd>Oil --float<cr>", { desc = "Open parent directory" } } },
   },
   {
     "SirZenith/oil-vcs-status",

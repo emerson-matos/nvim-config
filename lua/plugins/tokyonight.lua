@@ -1,5 +1,6 @@
 return {
   "folke/tokyonight.nvim",
+  -- lazy = false,
   opts = {
     transparent = true,
     styles = {
@@ -8,6 +9,6 @@ return {
     },
   },
   -- config = function()
-  -- vim.cmd.colorscheme("tokyonight")
+  --   vim.cmd.colorscheme("tokyonight")
   -- end,
 }
