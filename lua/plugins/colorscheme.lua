@@ -21,7 +21,6 @@ return {
         floats = "transparent",
       },
     },
-    -- lazy = false,
     -- config = function()
     --   vim.cmd.colorscheme("tokyonight")
     -- end,
