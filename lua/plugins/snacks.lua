@@ -15,6 +15,7 @@ return {
     },
     picker = {
       enabled = false,
+      ui_select = true, -- replace `vim.ui.select` with the snacks picker
       layout= {
         reverse = true,
         layout = {

@@ -1,12 +1,17 @@
 return {
   {
     'ellisonleao/gruvbox.nvim',
-    opts = {},
+    opts = {
+      transparent_mode = true
+    },
   },
 
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    opts = {
+      disable_background = true,
+    },
   },
   {
     "folke/tokyonight.nvim",
