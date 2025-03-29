@@ -90,3 +90,5 @@ vim.opt.autoindent = true
 vim.opt.foldenable = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+vim.g.snacks_animate = false
