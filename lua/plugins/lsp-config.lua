@@ -32,7 +32,6 @@ return {
     },
     keys = {
       -- { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" },
-      -- { "K", function() return vim.lsp.buf.hover() end, desc = "Hover" },
       -- { "gK", function() return vim.lsp.buf.signature_help() end, desc = "Signature Help" },
       -- { "<c-k>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
@@ -49,8 +48,6 @@ return {
       -- desc = "Next Reference", cond = function() return Snacks.words.is_enabled() end },
       -- { "<a-p>", function() Snacks.words.jump(-vim.v.count1, true) end, has = "documentHighlight",
       -- desc = "Prev Reference", cond = function() return Snacks.words.is_enabled() end },
-      -- { "[d", vim.diagnostic.gotto_next, desc = "Go to previous diagnostic" },
-      -- { "]d", vim.diagnostic.gotto_next, desc = "Go to next diagnostic" },
     },
     opts = function()
       ---@class PluginLspOpts
@@ -110,39 +107,7 @@ return {
         -- LSP Server Settings
         ---@type lspconfig.options
         servers = {
-          lua_ls = {
-            -- Use this to add any additional keymaps
-            -- for specific lsp servers
-            -- ---@type LazyKeysSpec[]
-            -- keys = {},
-            settings = {
-              Lua = {
-                workspace = {
-                  checkThirdParty = false,
-                },
-                codeLens = {
-                  enable = true,
-                },
-                completion = {
-                  callSnippet = "Replace",
-                },
-                doc = {
-                  privateName = { "^_" },
-                },
-                diagnostics = {
-                  globals = { 'vim' } -- Recognizes "vim" as a global
-                },
-                hint = {
-                  enable = true,
-                  setType = false,
-                  paramType = true,
-                  paramName = "Disable",
-                  semicolon = "Disable",
-                  arrayIndex = "Disable",
-                },
-              },
-            },
-          },
+          lua_ls = {},
           -- rust_analyzer = {},
           -- clojure_lsp = {},
           gopls = {},
