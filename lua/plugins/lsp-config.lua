@@ -1,11 +1,3 @@
-local icons = {
-  diagnostics = {
-    Error = " ",
-    Warn  = " ",
-    Hint  = " ",
-    Info  = " ",
-  }
-}
 return {
   -- lspconfig
   {
@@ -17,7 +9,6 @@ return {
       -- "saghen/blink.cmp",
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
-      -- { "antosha417/nvim-lsp-file-operations", config = true },
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -35,6 +26,7 @@ return {
       -- { "gK", function() return vim.lsp.buf.signature_help() end, desc = "Signature Help" },
       -- { "<c-k>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
+      { "<leader>cf", vim.lsp.buf.format,      desc = "Format code", mode = { "n", "x" } },
       -- { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" } },
       -- { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" } },
       -- { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", mode ={"n"}, has = { "workspace/didRenameFiles", "workspace/willRenameFiles" } },
@@ -57,46 +49,32 @@ return {
         diagnostics = {
           underline = true,
           update_in_insert = false,
-          virtual_text = {
-            spacing = 4,
-            source = "if_many",
-            prefix = "●",
-            -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-            -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-            -- prefix = "icons",
-          },
           severity_sort = true,
           signs = {
             text = {
-              [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-              [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-              [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-              [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+              [vim.diagnostic.severity.ERROR] = " ",
+              [vim.diagnostic.severity.WARN] = " ",
+              [vim.diagnostic.severity.HINT] = " ",
+              [vim.diagnostic.severity.INFO] = " ",
             },
           },
         },
-        -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
-        -- Be aware that you also will need to properly configure your LSP server to
-        -- provide the inlay hints.
         inlay_hints = {
           enabled = true,
           exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
         },
-        -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
-        -- Be aware that you also will need to properly configure your LSP server to
-        -- provide the code lenses.
         codelens = {
-          enabled = false,
+          enabled = true,
         },
         -- add any global capabilities here
-        capabilities = {
-          workspace = {
-            fileOperations = {
-              didRename = true,
-              willRename = true,
-            },
-          },
-        },
+        -- capabilities = {
+        --   workspace = {
+        --     fileOperations = {
+        --       didRename = true,
+        --       willRename = true,
+        --     },
+        --   },
+        -- },
         -- options for vim.lsp.buf.format
         -- `bufnr` and `filter` is handled by the LazyVim formatter,
         -- but can be also overridden when specified
@@ -119,27 +97,15 @@ return {
             },
           },
           tailwindcss = {
-          -- exclude a filetype from the default_config
-          -- filetypes_exclude = { "markdown" },
-          -- add additional filetypes to the default_config
-          -- filetypes_include = {},
-          -- to fully override the default_config, change the below
-          -- filetypes = {}
+            -- exclude a filetype from the default_config
+            -- filetypes_exclude = { "markdown" },
+            -- add additional filetypes to the default_config
+            -- filetypes_include = {},
+            -- to fully override the default_config, change the below
+            -- filetypes = {}
           },
           eslint = {},
           ts_ls = {},
-        },
-        -- you can do any additional lsp server setup here
-        -- return true if you don't want this server to be setup with lspconfig
-        ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-        setup = {
-          -- example to setup with typescript.nvim
-          -- tsserver = function(_, opts)
-          --   require("typescript").setup({ server = opts })
-          --   return true
-          -- end,
-          -- Specify * to use this function as a fallback for any server
-          -- ["*"] = function(server, opts) end,
         },
       }
       return ret
@@ -206,7 +172,7 @@ return {
           end
         end,
       })
-      --
+
       -- diagnostics signs
       for severity, icon in pairs(opts.diagnostics.signs.text) do
         local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
@@ -228,7 +194,6 @@ return {
       -- end
 
       -- code lens
-      -- if opts.codelens.enabled and vim.lsp.codelens then
       -- LazyVim.lsp.on_supports_method("textDocument/codeLens", function(client, buffer)
       --   vim.lsp.codelens.refresh()
       --   vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -236,19 +201,6 @@ return {
       --     callback = vim.lsp.codelens.refresh,
       --   })
       -- end)
-      -- end
-
-      if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
-        opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
-        or function(diagnostic)
-          local icons = opts.icons.diagnostics
-          for d, icon in pairs(icons) do
-            if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-              return icon
-            end
-          end
-        end
-      end
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
@@ -260,35 +212,18 @@ return {
         {},
         vim.lsp.protocol.make_client_capabilities(),
         has_cmp and cmp_nvim_lsp.default_capabilities() or {},
-        has_blink and blink.get_lsp_capabilities() or {},
-        opts.capabilities or {}
+        has_blink and blink.get_lsp_capabilities() or {}
       )
-
-      local function setup(server)
-        local server_opts = vim.tbl_deep_extend("force", {
-          capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
-        if server_opts.enabled == false then
-          return
-        end
-
-        if opts.setup[server] then
-          if opts.setup[server](server, server_opts) then
-            return
-          end
-        elseif opts.setup["*"] then
-          if opts.setup["*"](server, server_opts) then
-            return
-          end
-        end
-        require("lspconfig")[server].setup(server_opts)
-      end
 
       for server, server_opts in pairs(servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           if server_opts.enabled ~= false then
-            setup(server)
+            server_opts = vim.tbl_deep_extend("force", {
+              capabilities = vim.deepcopy(capabilities),
+            }, servers[server] or {})
+
+            require("lspconfig")[server].setup(server_opts)
           end
         end
       end
