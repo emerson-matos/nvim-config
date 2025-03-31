@@ -5,8 +5,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       -- "jose-elias-alvarez/typescript.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-      -- "saghen/blink.cmp",
+      -- "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
       {
