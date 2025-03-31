@@ -14,12 +14,12 @@ return {
         end,
       },
       win_options = {
-        signcolumn = "yes:2",
+        signcolumn = "yes:1",
       },
     },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    keys = { { "<leader>e", "<cmd>Oil --float<cr>", { desc = "Open parent directory" } } },
+    keys = { { "<leader>e", "<cmd>Oil<cr>", { desc = "Open parent directory" } } },
   },
   {
     "SirZenith/oil-vcs-status",
