@@ -6,9 +6,10 @@ return {
     dependencies = {
       -- "jose-elias-alvarez/typescript.nvim",
       -- "hrsh7th/cmp-nvim-lsp",
+      -- or
       "saghen/blink.cmp",
-      -- Useful status updates for LSP.
-      { "j-hui/fidget.nvim", opts = {} },
+      -- Useful status updates for LSP.-- using noice.nvim instead
+      -- { "j-hui/fidget.nvim", opts = {} },
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -83,7 +84,7 @@ return {
         servers = {
           lua_ls = {},
           -- rust_analyzer = {},
-          -- clojure_lsp = {},
+          clojure_lsp = {},
           gopls = {},
           nixd = {
             settings = {

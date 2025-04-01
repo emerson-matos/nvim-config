@@ -5,7 +5,6 @@ return {
       transparent_mode = true
     },
   },
-
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -22,6 +21,7 @@ return {
         floats = "transparent",
       },
     },
+    -- lazy = false,
     -- config = function()
     --   vim.cmd.colorscheme("tokyonight")
     -- end,

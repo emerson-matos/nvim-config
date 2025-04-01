@@ -9,6 +9,10 @@ return {
       provider = "ollama",
       ollama = {
         model = "qwen2.5-coder:14b",
+      },
+      file_selector = {
+        provider = "snacks",
+        provider_opts = {},
       }
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
