@@ -90,3 +90,4 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 vim.g.snacks_animate = false
+vim.o.termguicolors = true
