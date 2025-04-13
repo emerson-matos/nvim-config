@@ -4,12 +4,12 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      -- "jose-elias-alvarez/typescript.nvim",
       -- "hrsh7th/cmp-nvim-lsp",
       -- or
       "saghen/blink.cmp",
       -- Useful status updates for LSP.-- using noice.nvim instead
       -- { "j-hui/fidget.nvim", opts = {} },
+      "stevearc/conform.nvim",
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -102,7 +102,7 @@ return {
             -- filetypes = {}
           },
           eslint = {},
-          ts_ls = {},
+          -- ts_ls = {},
         },
       }
       return ret
@@ -148,15 +148,15 @@ return {
           --   })
           -- end)
 
-          if client:supports_method('textDocument/formatting') then
-            -- Format the current buffer on save
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = args.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-              end,
-            })
-          end
+          -- if client:supports_method("textDocument/formatting") then
+          -- Format the current buffer on save
+          -- vim.api.nvim_create_autocmd("BufWritePre", {
+          -- buffer = args.buf,
+          -- callback = function()
+          -- vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+          -- end,
+          -- })
+          -- end
           return client
         end,
       })
@@ -194,5 +194,11 @@ return {
         end
       end
     end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+    ft = { "typescriptreact" },
   },
 }

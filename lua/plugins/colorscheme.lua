@@ -1,16 +1,22 @@
 return {
   {
-    'ellisonleao/gruvbox.nvim',
+    "ellisonleao/gruvbox.nvim",
     opts = {
-      transparent_mode = true
+      transparent_mode = true,
     },
   },
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    lazy = false,
     opts = {
+      variant = "moon",
       disable_background = true,
     },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+      vim.cmd.colorscheme("rose-pine")
+    end,
   },
   {
     "folke/tokyonight.nvim",
@@ -22,14 +28,15 @@ return {
       },
     },
     -- lazy = false,
-    -- config = function()
-    --   vim.cmd.colorscheme("tokyonight")
-    -- end,
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      -- vim.cmd.colorscheme("tokyonight")
+    end,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
+    -- lazy = false,
     opts = {
       background = { -- :h background
         light = "latte",
@@ -42,19 +49,19 @@ return {
         noice = true,
         notify = true,
         snacks = { enabled = true },
-        which_key = true
-      }
+        which_key = true,
+      },
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-frappe")
+      -- vim.cmd.colorscheme("catppuccin-frappe")
     end,
   },
   {
     "dracula/vim",
     name = "dracula",
     lazy = false,
-    opts = {},
+    -- opts = {},
     config = function()
       -- vim.cmd.colorscheme("dracula")
       vim.g.dracula_colorterm = 0
