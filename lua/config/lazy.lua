@@ -49,7 +49,7 @@ require("lazy").setup({
 
     { "bufferline.nvim", enabled = false },
     { "mason.nvim", enabled = false },
-
+    { "mason-org/mason-lspconfig.nvim", enabled = false },
     { import = "plugins" },
   },
   defaults = {

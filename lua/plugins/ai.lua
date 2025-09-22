@@ -6,15 +6,20 @@ return {
     opts = {
       -- add any opts here
       -- for example
-      provider = "openai",
+      provider = "firma",
       auto_suggestions_provider = "openai",
-      openai = {
-        endpoint = "http://127.0.0.1:8899/v1",
-        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-        temperature = 0,
-        max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+      providers = {
+        firma = {
+          __inherited_from = "openai",
+          endpoint = "https://ist-prod-litellm.nullmplatform.com/v1",
+          model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+          timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+          extra_request_body = {
+            max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+            temperature = 0,
+            reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          },
+        },
       },
       behaviour = {
         --- ... existing behaviours
@@ -22,11 +27,9 @@ return {
       },
       rag_service = {
         enabled = true,
-        -- model = "o1-mini",
-
-        embed_model = "text-embedding-3-large",
-        provider = "openai",
-        endpoint = "http://127.0.0.1:8899/v1",
+        embed_model = "openai/text-embedding-3-small",
+        provider = "firma",
+        endpoint = "https://ist-prod-litellm.nullmplatform.com/v1",
         host_mount = vim.fn.getcwd(),
       },
       file_selector = {
@@ -51,7 +54,7 @@ return {
       -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
       -- "nvim-tree/nvim-web-devicons",
       -- or
-      "echasnovski/mini.icons",
+      "nvim-mini/mini.icons",
       -- "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
