@@ -8,7 +8,7 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
       { "<c-space>", desc = "Increment Selection" },
-      { "<bs>",      desc = "Decrement Selection", mode = "x" },
+      { "<bs>", desc = "Decrement Selection", mode = "x" },
     },
     opts_extend = { "ensure_installed" },
     ---@type TSConfig
@@ -51,6 +51,7 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "wgsl",
       },
       incremental_selection = {
         enable = true,
@@ -71,9 +72,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
     dependencies = { "windwp/nvim-ts-autotag", "nvim-treesitter/nvim-treesitter-context" },
   },
 }
