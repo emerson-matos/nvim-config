@@ -27,7 +27,7 @@ return {
       -- { "gK", function() return vim.lsp.buf.signature_help() end, desc = "Signature Help" },
       -- { "<c-k>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
-      { "<leader>cf", vim.lsp.buf.format,      desc = "Format code", mode = { "n", "x" } },
+      { "<leader>cf", vim.lsp.buf.format, desc = "Format code", mode = { "n", "x" } },
       -- { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" } },
       -- { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" } },
       -- { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", mode ={"n"}, has = { "workspace/didRenameFiles", "workspace/willRenameFiles" } },
@@ -83,7 +83,7 @@ return {
         ---@type lspconfig.options
         servers = {
           lua_ls = {},
-          -- rust_analyzer = {},
+          rust_analyzer = {},
           clojure_lsp = {},
           gopls = {},
           nixd = {
@@ -189,7 +189,8 @@ return {
               capabilities = vim.deepcopy(capabilities),
             }, servers[server] or {})
 
-            require("lspconfig")[server].setup(server_opts)
+            vim.lsp.config(server, server_opts)
+            vim.lsp.enable(server)
           end
         end
       end
