@@ -1,8 +1,8 @@
 return {
   {
-    'ellisonleao/gruvbox.nvim',
+    "ellisonleao/gruvbox.nvim",
     opts = {
-      transparent_mode = true
+      transparent_mode = true,
     },
   },
   {
@@ -28,7 +28,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
+    lazy = true,
     opts = {
       background = { -- :h background
         light = "latte",
@@ -41,12 +41,12 @@ return {
         noice = true,
         notify = true,
         snacks = { enabled = true },
-        which_key = true
-      }
+        which_key = true,
+      },
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-frappe")
+      -- vim.cmd.colorscheme("catppuccin-frappe")
     end,
   },
   {
@@ -55,7 +55,7 @@ return {
     lazy = false,
     opts = {},
     config = function()
-      -- vim.cmd.colorscheme("dracula")
+      vim.cmd.colorscheme("dracula")
       vim.g.dracula_colorterm = 0
     end,
   },

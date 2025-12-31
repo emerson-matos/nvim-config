@@ -81,6 +81,7 @@ return {
           -- },
           -- },
         },
+        cmake = {},
         tailwindcss = {},
         eslint = {},
         vtsls = false,
