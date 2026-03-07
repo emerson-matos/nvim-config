@@ -62,7 +62,7 @@ return {
   keys = {
     -- Top Pickers & Explorer
     {
-      "<leader><space>",
+      "<leader>.",
       function()
         Snacks.picker.smart()
       end,
@@ -112,7 +112,7 @@ return {
       desc = "Find Config File",
     },
     {
-      "<leader>ff",
+      "<leader><space>",
       function()
         Snacks.picker.files()
       end,
@@ -396,7 +396,7 @@ return {
       desc = "Toggle Zoom",
     },
     {
-      "<leader>.",
+      "<leader>bx",
       function()
         Snacks.scratch()
       end,
